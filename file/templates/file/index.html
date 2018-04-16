@@ -1,0 +1,27 @@
+{% extends 'file/base.html' %}
+{% load static %}
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="file" name="file" required="required"/>
+        <br />
+        <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+    <img src="{{ file.file.url }}" width="240">
+    </div>
+
+
+</form>
+
+ {% if upload_file_path %}
+    Uploaded at: <label class="text-primary">{{ upload_file_path }}</label>
+ {% endif %}
+<br><br>
+
+
+
+{% for i in images %}
+<img src="{{ i.file.url }}" alt="img" class="img-responsive img-rounded">
+{% endfor %}
+
+{% endblock %}
